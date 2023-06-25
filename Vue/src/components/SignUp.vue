@@ -42,7 +42,7 @@
 <script>
 
   import axios from 'axios';
-
+  //test
     export default {
       name: 'SignUp',
       components: {
@@ -72,10 +72,13 @@
             if(data.data.message == "Unauthorized"){
               console.log('Datos incorrectos');
               this.error_msg = 'Datos incorrectos';
+
             }else if( data.status == 200 && data.data.user.cargo == 'Directora'){
               console.log('Cargo Directora');
+
             }else if(data.status == 200 && data.data.user.id){
               console.log('Bienvenido trabajador');
+              
             }else{
               this.error = true;
               this.error_msg = data.data.result.error_msg;
