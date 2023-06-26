@@ -8,7 +8,6 @@
     </head>
 <body>
     <header>
-        <!-- HOLA HOLAA -->
     <div class="inner">
       <div class="logo"><img src="../assets/fundacion.png"></div>
       <div class="burger"></div>
@@ -17,6 +16,7 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajador">Crear trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
@@ -37,7 +37,10 @@
 
         methods: {
             RedirigirIngresoNino(){
-            this.$router.push('/CrearNino')
+                this.$router.push('/CrearNino')
+            },
+            RedirigirIngresoTrabajador(){
+                this.$router.push('/CrearTrabajador')
             }
         },
         

@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hola mundo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
   <header>
@@ -17,53 +16,87 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajador">Crear trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
   </header>
     <div class="d-flex justify-content-center mt-5">
-        <form @submit.prevent="IngresarAdultos()">
+        <form @submit.prevent="IngresarAdultos()" class="my-form">
             
-            <div class="form-group mt-4">
-              <label for="nombreNiño">Nombre</label>
-              <input type="word" class="form-control" v-model="name" placeholder="Ingrese un nombre">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Apellido</label>
-                <input type="word" class="form-control" v-model="lastname" placeholder="Ingrese un apellido">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Rut</label>
-                <input type="integer" class="form-control" v-model="rut" placeholder="Ingrese un rut">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Vinculo</label>
-                <input type="word" class="form-control" v-model="vinculo" placeholder="Ingrese un vinculo">
-            </div>
-            <div class="mt-3">
-                <label for="información">Observaciones</label>
-                <textarea class="form-control" v-model="obs" rows="3"></textarea>
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Dirección</label>
-                <input type="word" class="form-control" v-model="direccion" placeholder="Ingrese una direccion">
-            </div><div class="form-group mt-4">
-                <label for="nombreNiño">Teléfono</label>
-                <input type="word" class="form-control" v-model="phone" placeholder="Ingrese una direccion">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Objetivos</label>
-                <input type="word" class="form-control" v-model="objetivos" placeholder="Ingrese Objetivos">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Correo</label>
-                <input type="email" class="form-control" v-model="email" placeholder="Ingrese un correo">
-            </div>
-            <div class="form-group mt-4">
-                <label for="nombreNiño">Rubro</label>
-                <input type="word" class="form-control" v-model="rubro" placeholder="Ingrese un rubro">
-            </div>
-            <button type="submit" class="btn justify-content-center btn-primary mt-4">Crear perfil</button>
+          <div class="container">
+          <div class="row">
+              <h1 class="textTittle">Ingresar Adulto</h1>
+          </div>
+          <div class="row">
+              <h4 style="text-align:center">Ingrese los datos del adulto responsable</h4>
+          </div>
+          <div class="row input-container">
+              <div class="col-xs-12">
+                <div class="styled-input wide">
+                  <input type="text" required v-model="name"/>
+                  <label>Nombre</label> 
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="text" required v-model="lastname"/>
+                  <label>Apellido</label>  
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="integer" required v-model="rut"/>
+                  <label>Rut</label> 
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="text" required v-model="vinculo"/>
+                  <label>Vinculo</label>  
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="text" required v-model="obs"/>
+                  <label>Observaciones</label>  
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="integer" required v-model="direccion"/>
+                  <label>Direccion</label> 
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input" style="float:right;">
+                  <input type="text" required v-model="phone"/>
+                  <label>Telefono</label> 
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="styled-input wide">
+                  <textarea required v-model="objetivos"></textarea>
+                  <label>Objetivos</label>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="integer" required v-model="email"/>
+                  <label>Email</label> 
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                  <input type="text" required v-model="rubro"/>
+                  <label>Rubro</label>  
+                </div>
+              </div>
+              <div class="col-xs-12" id="ButtonNino">
+                <button type="submit" class="btn justify-content-center btn-primary mt-4">Crear niño</button>
+              </div>
+          </div>
+        </div>
           </form>
     </div>
 </body>
@@ -116,5 +149,5 @@
 </script>
 
 <style>
-    @import '../assets/css/admincss.css';
+    @import '../assets/css/ingresinino.css';
 </style>

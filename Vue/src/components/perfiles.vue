@@ -17,22 +17,29 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajador">Crear trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
   </header>
-    <div class="d-flex justify-content-center py-3">
+    <div class="d-flex justify-content-center py-3 mt-5">
         <ul class="nav">
             <li class="nav-item">
-                <a href="perfilTrabajador.html" class="btn btn-primary btn-spacing">Perfil trabajadores</a>
+                <a href="/PerfilTrabajadoresPanel" class="nav-link">Trabajadores</a>
             </li>
             <li class="nav-item">
-                <router-link to="/PerfilResponsablePanel" class="nav-link">Perfil responsable</router-link>
+                <router-link to="/PerfilResponsablePanel" class="nav-link">Responsables</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/PerfilNinoPanel" class="nav-link">Perfil niño</router-link>
+                <router-link to="/PerfilNinoPanel" class="nav-link">Niños</router-link>
             </li>
         </ul>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 200px;">
+        <div class="col-lg-6 col-md-8 mx-auto text-center">
+            <h1 class="fw-light">Porfavor haga click en los perfiles que desee ver.</h1>
+            <p class="lead text-body-secondary">Si no aparece el perfil que usted desee, favor revisar si está creado.</p>
+        </div>
     </div>
 </body>
 </template>

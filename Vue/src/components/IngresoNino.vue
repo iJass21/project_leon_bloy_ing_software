@@ -16,6 +16,7 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajador">Crear trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
@@ -88,42 +89,6 @@
               </div>
           </div>
         </div>
-        <!--div class="form-group mt-4">
-          <label for="nombreNiño">Id adulto responsable</label>
-          <input type="word" class="form-control"  v-model="adult_respon_id" placeholder="Ingrese un id adulto responsalbe">
-        </div>
-        <div class="form-group mt-4">
-          <label for="nombreNiño">Nombre</label>
-          <input type="word" class="form-control"  v-model="name" placeholder="Ingrese un nombre">
-        </div>
-        <div class="form-group mt-4">
-            <label for="nombreNiño">Apellido</label>
-            <input type="word" class="form-control"  v-model="lastname" placeholder="Ingrese un apellido">
-        </div>
-        <div class="form-group mt-4">
-            <label for="nombreNiño">Rut</label>
-            <input type="integer" class="form-control"  v-model="rut" placeholder="Ingrese un rut">
-        </div>
-        <div class="mt-4">
-          <label for="f_nac">Fecha de Nacimiento</label>
-          <input type="date" id="f_nac" v-model="f_nac" required>
-        </div>
-        <div class="mt-3">
-            <label for="información">Observaciones</label>
-            <textarea class="form-control"  v-model="obs" rows="3"></textarea>
-        </div>
-        <div class="form-group mt-4">
-            <label for="nombreNiño">Dirección</label>
-            <input type="word" class="form-control"  v-model="direccion" placeholder="Ingrese una direccion">
-        </div><div class="form-group mt-4">
-            <label for="nombreNiño">Teléfono</label>
-            <input type="word" class="form-control"  v-model="phone_contact" placeholder="Ingrese un telefono">
-        </div>
-        <div class="form-group mt-4">
-            <label for="nombreNiño">Descripcion</label>
-            <input type="word" class="form-control"  v-model="description" placeholder="Ingrese una descripcion">
-        </div>
-        <button type="submit" class="btn justify-content-center btn-primary mt-4">Crear niñe</button-->
       </form>
     </div>
 </body>
