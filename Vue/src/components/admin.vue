@@ -16,7 +16,7 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
-        <a href="/CrearTrabajador">Crear trabajador</a>
+        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
@@ -37,10 +37,7 @@
 
         methods: {
             RedirigirIngresoNino(){
-                this.$router.push('/CrearNino')
-            },
-            RedirigirIngresoTrabajador(){
-                this.$router.push('/CrearTrabajador')
+            this.$router.push('/CrearNino')
             }
         },
         

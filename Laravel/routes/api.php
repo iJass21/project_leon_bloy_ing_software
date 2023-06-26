@@ -65,6 +65,10 @@ Route::post('/motivoingreso', [ motivo_ingresoController::class, 'store']);
 
 Route::post('/fichas',[ ficha_childController::class, 'store']);
 
+Route::get('/fichas/{id}',[ ficha_childController::class, 'show']);
+
+Route::patch('/update-fichas/{id}',[ ficha_childController::class, 'update']);
+
 Route::post('/alertas',[ alertaController::class, 'store']);
 
 Route::post('/motivo_child', [ motivo_childController::class, 'store']);

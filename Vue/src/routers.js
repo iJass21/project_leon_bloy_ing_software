@@ -3,11 +3,12 @@ import SignUp from './components/SignUp.vue'
 import NinoPanel from './components/IngresoNino.vue'
 import AdultCreatePanel from './components/CrearAdulto.vue'
 import PerfilesPanel from './components/perfiles.vue'
-import PerfilTrabajadoresPanel from './components/PerfilTrabajadoresPanel.vue'
 import PerfilNinoPanel from './components/perfilnino.vue'
 import PerfilResponsablePanel from './components/PerfilResponsable.vue'
 import PerfilNinoFInalPanel from './components/PerfilNinoFinal.vue';
-import CrearTrabajador from './components/CrearTrabajador.vue';
+import FichaNino from './components/FichaNino.vue';
+import EditarFicha from './components/EditarFicha.vue';
+import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
 
 import{createRouter, createWebHistory} from 'vue-router'
 
@@ -28,11 +29,6 @@ const routes = [
         path:'/CrearNino' 
     },
     {
-        name: 'CrearTrabajador',
-        component:CrearTrabajador,
-        path:'/CrearTrabajador' 
-    },
-    {
         name: 'AdultCreatePanel',
         component:AdultCreatePanel,
         path:'/AdultCreatePanel' 
@@ -41,11 +37,6 @@ const routes = [
         name: 'PerfilesPanel',
         component:PerfilesPanel,
         path:'/PerfilesPanel' 
-    },
-    {
-        name: 'PerfilTrabajadoresPanel',
-        component:PerfilTrabajadoresPanel,
-        path:'/PerfilTrabajadoresPanel' 
     },
     {
         name: 'PerfilNinoPanel',
@@ -61,6 +52,22 @@ const routes = [
         path: '/PerfilNinoFInalPanel/:id', // La ruta acepta un parámetro llamado "id"
         name: 'PerfilNinoFInalPanel',
         component: PerfilNinoFInalPanel
+      },
+    {
+        path: '/FichaNino/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'FichaNino',
+        component: FichaNino
+      },
+    {
+        path: '/EditarFicha/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'EditarFicha',
+        component: EditarFicha
+      },
+
+    {
+        path: '/CrearTrabajadorPanel', // La ruta acepta un parámetro llamado "id2
+        name: 'CrearTrabajadorPanel',
+        component: CrearTrabajadorPanel
       },
 
 ];
