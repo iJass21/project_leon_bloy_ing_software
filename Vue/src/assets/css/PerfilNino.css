@@ -34,6 +34,7 @@ body{
 .about-text p {
   font-size: 18px;
   max-width: 5000px;
+  margin-right: 0;
 }
 .about-text p mark {
   font-weight: 600;
@@ -42,6 +43,7 @@ body{
 
 .about-list {
   padding-top: 10px;
+  margin-right: 0;
 }
 .about-list .media {
   padding: 5px 0;
@@ -49,7 +51,7 @@ body{
 .about-list label {
   color: #20247b;
   font-weight: 600;
-  width: 88px;
+  width: 100%;
   margin: 0;
   position: relative;
 }
@@ -58,7 +60,7 @@ body{
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 11px;
+  right: 0;
   width: 1px;
   height: 12px;
   background: #20247b;
@@ -69,10 +71,12 @@ body{
   transform: rotate(15deg);
   margin: auto;
   opacity: 0.5;
+  white-space: nowrap;
 }
 .about-list p {
   margin: 0;
   font-size: 15px;
+  width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -158,4 +162,11 @@ body{
   filter: saturate(0.2) opacity(0.5);
   -webkit-filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
+}
+.nowrap-label{
+  white-space: nowrap;
+}
+.nowrap-label::after{
+  content: "";
+  display:none;
 }
