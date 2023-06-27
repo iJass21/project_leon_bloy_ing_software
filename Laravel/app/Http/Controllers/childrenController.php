@@ -58,6 +58,8 @@ class childrenController extends Controller
 
         $child = children::where('id', $id)->get();
 
+        //ruta funcionando
+
         /*$this->validate($request,[
             'adult_respon_id' => 'required',
             'name' => 'required|string',
