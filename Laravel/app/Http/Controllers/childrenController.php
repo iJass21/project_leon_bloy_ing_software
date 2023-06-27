@@ -52,13 +52,13 @@ class childrenController extends Controller
 
     }
 
-    public function update($id, Request $request){
+    public function update(Request $request, $id ){
 
         //$children = children::where('id', $id)->get();
 
-        $child = children::where('children_id', $id)->get();
-/*
-        $this->validate($request,[
+        $child = children::where('id', $id)->get();
+
+        /*$this->validate($request,[
             'adult_respon_id' => 'required',
             'name' => 'required|string',
             'lastname'  => 'required|string',
@@ -68,10 +68,25 @@ class childrenController extends Controller
             'direccion' => 'required|string',
             'phone_contact' => 'required|string',
             'description' => 'required|string'
+        ]);*/
+
+        /*ficha_child::where('children_id', $id)->update([
+            'objetivos' => $request['objetivos']
+        ]);*/
+
+        children::where('id', $id)->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'rut' => $request->rut,
+            'f_nac' => $request->f_nac,
+            'obs' => $request->obs,
+            'direccion' => $request->direccion,
+            'phone_contact' => $request->phone_contact,
+            'description' => $request->description
         ]);
 
-        $adultos = adulto_responsable::findOrFail($request->adult_respon_id);
-        $adultos->Children()->create([
+        /*
+        $child->Children()->update([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'rut' => $request->rut,
@@ -81,6 +96,8 @@ class childrenController extends Controller
             'phone_contact' => $request->phone_contact,
             'description' => $request->description
         ]);*/
+
+        $child = children::where('id', $id)->get();
 
 
         return $child;
