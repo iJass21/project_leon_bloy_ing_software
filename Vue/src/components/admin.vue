@@ -22,10 +22,11 @@
     </div>
   </header>
 
-    <div class="d-flex justify-content-center" style="margin-top: 200px;">
+    <div class="d-flex justify-content-center" style="margin-top: 100px;">
         <div class="col-lg-6 col-md-8 mx-auto text-center">
             <h1 class="fw-light">Bienvenida Directora</h1>
-            <p class="lead text-body-secondary">Aqui se me ocurre poner un texto explicativo del perfil o si no, hay que ver qué se le pone...</p>
+            <img src="../assets/admin.png" alt="Imagen directora">
+
         </div>
     </div>
 </body>

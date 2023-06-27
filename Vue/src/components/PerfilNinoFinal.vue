@@ -36,33 +36,33 @@
                 <div class="row about-list" id="INFO">
                   <div class="col-md-6">
                     <div class="media">
-                      <label>Fecha De Nacimiento</label>
+                      <label class="nowrap-label">Fecha De Nacimiento</label>
                       <p>{{ children.f_nac }}</p>
                     </div>
                     <div class="media">
-                      <label>Edad</label>
+                      <label class="nowrap-label">Edad</label>
                       <p>{{ calculateAge(children.f_nac) }}</p>
                     </div>
                     <div class="media">
-                      <label>Direccion</label>
+                      <label class="nowrap-label">Direccion</label>
                       <p>{{ children.direccion }}</p>
                     </div>
                     <div class="media">
-                      <label>Telefono</label>
+                      <label class="nowrap-label">Telefono</label>
                       <p>{{ children.phone_contact }}</p>
                     </div>
                   </div>
                   <div class="col-md-6" v-for="adulto in adultos" :key="adulto.id">
                     <div class="media">
-                      <label>Nombre Adulto Responsable</label>
+                      <label class="nowrap-label">Nombre Adulto Responsable</label>
                       <p>{{ adulto.name }} {{ adulto.lastname }}</p>
                     </div>
                     <div class="media">
-                      <label>Rut Adulto</label>
+                      <label class="nowrap-label">Rut Adulto</label>
                       <p>{{ adulto.rut }}</p>
                     </div>
                     <div class="media">
-                      <label>Telefono Adulto</label>
+                      <label class="nowrap-label">Telefono Adulto</label>
                       <p>{{ adulto.phone }}</p>
                     </div>
                   </div>
