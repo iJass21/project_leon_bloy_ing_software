@@ -18,7 +18,7 @@
         <a href="/PerfilesPanel">Perfiles</a>
         <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
       </nav>
-      <a href="/" class="donate-link">Cerrar Sesion</a>
+      <a  href="/" class="donate-link" v-on:click.prevent="cerrarSesion"  >Cerrar Sesion</a>
     </div>
   </header>
 
@@ -32,12 +32,30 @@
 </template>
 
 <script>
+
+    import axios from 'axios';
+
     export default {
         name: 'AdminPanel',
+
+
 
         methods: {
             RedirigirIngresoNino(){
             this.$router.push('/CrearNino')
+            },
+            cerrarSesion(){
+                //let Token = localStorage.getItem(AccessToken);
+                console.log("cerrando sesion" /*+ Token*/);
+                axios.get(`http://127.0.0.1:8000/api/logout`,)
+                .then(data => {
+                console.log(data);
+                })
+                .catch((error) => {
+                    if(error.response.status === 401){
+                        console.log("no autenticado");
+                    }
+                });
             }
         },
         

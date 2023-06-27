@@ -9,14 +9,18 @@ import PerfilNinoFInalPanel from './components/PerfilNinoFinal.vue';
 import FichaNino from './components/FichaNino.vue';
 import EditarFicha from './components/EditarFicha.vue';
 import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
+import TrabajadorPanel from './components/Trabajador.vue';
 
-import{createRouter, createWebHistory} from 'vue-router'
+import{createRouter, createWebHistory} from 'vue-router';
+
+//import store from '../store';
 
 const routes = [
     {
         name: 'AdminPanel',
         component:AdminPanel,
-        path:'/AdminPanel'
+        path:'/AdminPanel',
+        meta: { requiresAuth: true}
     },
     {
         name: 'SignUp',
@@ -69,6 +73,11 @@ const routes = [
         name: 'CrearTrabajadorPanel',
         component: CrearTrabajadorPanel
       },
+      {
+        path: '/TrabajadorPanel', // La ruta acepta un parámetro llamado "id2
+        name: 'TrabajadorPanel',
+        component: TrabajadorPanel
+      },
 
 ];
 
@@ -77,4 +86,16 @@ const router = createRouter({
     routes,
 });
 
+/*router.beforeEach((to, from, next) => {
+    if(to.matched.some(route => route.meta.requiresAuth)){
+        if(!store.state.loggedIn){
+            next('/')
+        }else{
+            next();
+        }
+    }else{
+        next()
+    }
+})
+*/
 export default router;
