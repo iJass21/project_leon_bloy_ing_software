@@ -6,6 +6,9 @@ import PerfilesPanel from './components/perfiles.vue'
 import PerfilNinoPanel from './components/perfilnino.vue'
 import PerfilResponsablePanel from './components/PerfilResponsable.vue'
 import PerfilNinoFInalPanel from './components/PerfilNinoFinal.vue';
+import FichaNino from './components/FichaNino.vue';
+import EditarFicha from './components/EditarFicha.vue';
+import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
 
 import{createRouter, createWebHistory} from 'vue-router'
 
@@ -49,6 +52,22 @@ const routes = [
         path: '/PerfilNinoFInalPanel/:id', // La ruta acepta un parámetro llamado "id"
         name: 'PerfilNinoFInalPanel',
         component: PerfilNinoFInalPanel
+      },
+    {
+        path: '/FichaNino/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'FichaNino',
+        component: FichaNino
+      },
+    {
+        path: '/EditarFicha/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'EditarFicha',
+        component: EditarFicha
+      },
+
+    {
+        path: '/CrearTrabajadorPanel', // La ruta acepta un parámetro llamado "id2
+        name: 'CrearTrabajadorPanel',
+        component: CrearTrabajadorPanel
       },
 
 ];

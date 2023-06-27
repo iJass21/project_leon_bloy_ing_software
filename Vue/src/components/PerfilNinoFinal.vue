@@ -11,18 +11,19 @@
 
   <body>
     <header>
-      <div class="inner">
-        <div class="logo"><img src="../assets/fundacion.png"></div>
-        <div class="burger"></div>
-        <nav>
-          <a href="/AdminPanel">Inicio</a>
-          <a href="/CrearNino">Integrar Niño</a>
-          <a href="/AdultCreatePanel">Crear Adultos</a>
-          <a href="/PerfilesPanel">Perfiles</a>
-        </nav>
-        <a href="/" class="donate-link">Cerrar Sesion</a>
-      </div>
-    </header>
+    <div class="inner">
+      <div class="logo"><img src="../assets/fundacion.png"></div>
+      <div class="burger"></div>
+      <nav>
+        <a  href="/AdminPanel">Inicio</a>
+        <a href="/CrearNino">Integrar Niño</a>
+        <a href="/AdultCreatePanel">Crear Adultos</a>
+        <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
+      </nav>
+      <a href="/" class="donate-link">Cerrar Sesion</a>
+    </div>
+  </header>
     <section class="section about-section gray-bg" id="about">
       <div class="container" style="padding-right: 200px;">
         <div class="row align-items-center flex-row-reverse">
@@ -66,11 +67,11 @@
                     </div>
                   </div>
                 </div>
-              </a>
-            </div>
             <div>
-              <button class="button-32" role="button" >Ver Ficha</button>
+              <button @click="redirectToPerfilNino(children.id)" class="button-32" role="button">Ver Ficha</button>
             </div>
+          </a>
+          </div>
           </div>
         </div>
       </div>
@@ -105,6 +106,9 @@ export default {
           this.childrens = res.data;
           console.log(this.childrens);
         });
+    },
+    redirectToPerfilNino(childId) {
+      this.$router.push({ name: 'FichaNino', params: { id: childId } });
     },
     calculateAge(fecha) {
       const now = moment();
