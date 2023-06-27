@@ -9,6 +9,7 @@ import PerfilNinoFInalPanel from './components/PerfilNinoFinal.vue';
 import FichaNino from './components/FichaNino.vue';
 import EditarFicha from './components/EditarFicha.vue';
 import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
+import PerfilTrabajadoresPanel from './components/PerfilTrabajadores.vue';
 
 import PerfilResponsableFinal from './components/PerfilResponsableFinal.vue';
 import TrabajadorPanel from './components/Trabajador.vue';
@@ -83,8 +84,15 @@ const routes = [
       name: 'TrabajadorPanel',
       component: TrabajadorPanel
     },
+    {
+        path: '/PerfilTrabajadoresPanel', // La ruta acepta un parámetro llamado "id2
+        name: 'PerfilTrabajadoresPanel',
+        component: PerfilTrabajadoresPanel
+    },
 
 ];
+
+//PerfilTrabajadoresPanel
 
 const router = createRouter({
     history: createWebHistory(),
