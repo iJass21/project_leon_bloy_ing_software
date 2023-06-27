@@ -1,12 +1,14 @@
 <template>
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hola mundo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hola mundo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
     </head>
+
     <body>
         <header>
     <div class="inner">
@@ -17,19 +19,27 @@
         <a href="/CrearNino">Integrar Niño</a>
         <a href="/AdultCreatePanel">Crear Adultos</a>
         <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
       </nav>
       <a href="/" class="donate-link">Cerrar Sesion</a>
     </div>
   </header>
-    <div id="app" class="list-group list-group-flush border-bottom scrollarea">
-        <a v-for="responsable in responsables" :key="responsable.id" href="#" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-        <div class="d-flex w-100 align-items-center justify-content-between">
-          <strong class="mb-1">{{ responsable.name }}</strong>
-          <small>Ver perfil</small>
+        <div id="app" class="list-group list-group-flush border-bottom scrollarea">
+            <div class="grid-container">
+                <a v-for="adulto in paginatedResponsables" :key="adulto.id" href="#" id="list"
+                    class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                    <div class="d-flex w-100 align-items-center justify-content-between">
+                        <strong class="mb-1">{{ adulto.name }} {{ adulto.lastname }}</strong>
+                    </div>
+                    <div class="col-12 mb-1 small">{{ adulto.rut }}</div>
+                </a>
+            </div>
         </div>
-        <div class="col-10 mb-1 small">Fecha de ingreso.</div>
-      </a>
-    </div>
+        <div class="pagination" id="button-list">
+            <button id="button-next" :disabled="currentPage === 1" @click="previousPage">Anterior</button>
+            <span>{{ currentPage }}</span>
+            <button id="button-next" :disabled="currentPage === totalPages" @click="nextPage">Siguiente</button>
+        </div>
     </body>
 </template>
 
@@ -43,9 +53,21 @@
         },
         data(){
             return {
-                responsables: []
+                responsables: [],
+                currentPage: 1,
+                perPage: 10
             }
         },
+        computed: {
+        paginatedResponsables() {
+            const startIndex = (this.currentPage - 1) * this.perPage;
+            const endIndex = startIndex + this.perPage;
+            return this.responsables.slice(startIndex, endIndex);
+        },
+        totalPages() {
+            return Math.ceil(this.responsables.length / this.perPage);
+        }
+    },
         methods: {
             getResponsable(){
                 axios.get('http://127.0.0.1:8000/api/VerAdultos')
@@ -53,7 +75,19 @@
                     this.responsables = res.data;
                     console.log(this.responsables);
                 });
+            },
+            previousPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.getResponsable();
             }
+        },
+        nextPage() {
+            if (this.currentPage < this.totalPages) {
+                this.currentPage++;
+                this.getResponsable();
+            }
+        }
         }
     };
 </script>
@@ -61,4 +95,5 @@
 
 <style>
     @import '../assets/css/admincss.css';
+    @import '../assets/css/perfiles.css';
 </style>

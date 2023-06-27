@@ -11,27 +11,29 @@
 
     <body>
         <header>
-            <div class="inner">
-                <div class="logo"><img src="../assets/fundacion.png"></div>
-                <div class="burger"></div>
-                <nav>
-                    <a href="/AdminPanel">Inicio</a>
-                    <a href="/CrearNino">Integrar Niño</a>
-                    <a href="/AdultCreatePanel">Crear Adultos</a>
-                    <a href="/PerfilesPanel">Perfiles</a>
-                </nav>
-                <a href="/" class="donate-link">Cerrar Sesion</a>
-            </div>
-        </header>
+    <div class="inner">
+      <div class="logo"><img src="../assets/fundacion.png"></div>
+      <div class="burger"></div>
+      <nav>
+        <a  href="/AdminPanel">Inicio</a>
+        <a href="/CrearNino">Integrar Niño</a>
+        <a href="/AdultCreatePanel">Crear Adultos</a>
+        <a href="/PerfilesPanel">Perfiles</a>
+        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
+      </nav>
+      <a href="/" class="donate-link">Cerrar Sesion</a>
+    </div>
+  </header>
         <div id="app" class="list-group list-group-flush border-bottom scrollarea">
             <div class="grid-container">
                 <a v-for="children in paginatedChildrens" :key="children.id" href="#" id="list"
                     class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
                     <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">{{ children.name }}</strong>
-                        <a href="#" @click="redirectToPerfilNino(children.id)">Perfil</a>
+                        <strong class="mb-1">{{ children.name }} {{ children.lastname }}</strong>
+                        <button class="button-81" @click="redirectToPerfilNino(children.id)" role="button">Perfiles</button>
+
                     </div>
-                    <div class="col-10 mb-1 small">{{ children.rut }}</div>
+                    <div class="col-12 mb-1 small">{{ children.rut }}</div>
                 </a>
             </div>
         </div>
