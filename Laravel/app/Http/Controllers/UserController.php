@@ -15,4 +15,11 @@ class UserController extends Controller
         $trabajadores = User::all();
         return $trabajadores;
     }
+
+    public function show($id){
+
+        $adulto = User::where('id', $id)->get();
+        return $adulto;
+
+    }
 }

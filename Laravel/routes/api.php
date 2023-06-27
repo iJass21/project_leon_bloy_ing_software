@@ -77,3 +77,5 @@ Route::post('/motivo_child', [ motivo_childController::class, 'store']);
 Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);
 
 Route::get('/verTrabajadores', [ UserController::class, 'index']);
+
+Route::get('/trabajador/{id}', [ childrenController::class, 'show']);
