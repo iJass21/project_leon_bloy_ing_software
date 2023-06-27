@@ -64,24 +64,31 @@
             "password" : this.password
           };
 
-          axios.post(`http://127.0.0.1:8000/api/login`, json)
-          .then(data => {
-            console.log(data);
-            //console.log(data.data.user.cargo);
+
+        axios.post(`http://127.0.0.1:8000/api/login`, json)
+        .then(data => {
+          console.log(data.data.AccessToken);
+          //console.log(data.data.user.cargo);
 
             if(data.data.message == "Unauthorized"){
               console.log('Datos incorrectos');
               this.error_msg = 'Datos incorrectos';
             }else if( data.status == 200 && data.data.user.cargo == 'Directora'){
               console.log('Cargo Directora');
+              this.$router.push('/AdminPanel');
+              localStorage.setItem('authenticated', 'true');
+              //localStorage.setItem('AccessToken', data.data.AccessToken);
+              //this.$emit('updateSidebar')
+              
             }else if(data.status == 200 && data.data.user.id){
               console.log('Bienvenido trabajador');
+              this.$router.push('/TrabajadorPanel');
             }else{
               this.error = true;
               this.error_msg = data.data.result.error_msg;
             }
 
-          });
+        });
 
         }
       }

@@ -58,7 +58,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
-                <input type="word" required v-model="direccion" >
+                <input type="word" required v-model="adultos.direccion" >
                 <label>Direccion</label>
               </div>
             </div>

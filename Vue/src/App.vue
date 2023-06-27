@@ -6,6 +6,12 @@
 
 export default {
   name: 'App',
+
+  mounted(){
+    if(localStorage.getItem('authenticated')){
+      //this
+    }
+  }
 }
 </script>
 
