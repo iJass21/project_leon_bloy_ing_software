@@ -68,7 +68,7 @@
                   </div>
                 </div>
             <div>
-              <button @click="redirectToPerfilNino(children.id)" class="button-32" role="button">Ver Ficha</button>
+              <button @click="redirectToPerfilNino(children.id)" class="button-32" role="button">Egresar Niño</button>
             </div>
           </a>
           </div>

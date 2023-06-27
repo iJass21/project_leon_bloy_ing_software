@@ -30,7 +30,7 @@
                     class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <p class="mb-1"><strong>Nombre: </strong>{{ children.name }} {{ children.lastname }}</p>
-                        <button class="button-81" @click="redirectToPerfilNino(children.id)" role="button">Perfiles</button>
+                        <button class="button-81" @click="redirectToPerfilNino(children.id)" role="button">Detalles</button>
 
                     </div>
                     <div class="col-12 mb-1 small"><strong>Rut: </strong>{{ children.rut }}</div>

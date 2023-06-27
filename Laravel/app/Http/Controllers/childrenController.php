@@ -51,4 +51,56 @@ class childrenController extends Controller
         return $children;
 
     }
+
+    public function update(Request $request, $id ){
+
+        //$children = children::where('id', $id)->get();
+
+        $child = children::where('id', $id)->get();
+
+        /*$this->validate($request,[
+            'adult_respon_id' => 'required',
+            'name' => 'required|string',
+            'lastname'  => 'required|string',
+            'rut' => 'required|integer',
+            'f_nac' => 'required|date',
+            'obs' => 'required|string',
+            'direccion' => 'required|string',
+            'phone_contact' => 'required|string',
+            'description' => 'required|string'
+        ]);*/
+
+        /*ficha_child::where('children_id', $id)->update([
+            'objetivos' => $request['objetivos']
+        ]);*/
+
+        children::where('id', $id)->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'rut' => $request->rut,
+            'f_nac' => $request->f_nac,
+            'obs' => $request->obs,
+            'direccion' => $request->direccion,
+            'phone_contact' => $request->phone_contact,
+            'description' => $request->description
+        ]);
+
+        /*
+        $child->Children()->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'rut' => $request->rut,
+            'f_nac' => $request->f_nac,
+            'obs' => $request->obs,
+            'direccion' => $request->direccion,
+            'phone_contact' => $request->phone_contact,
+            'description' => $request->description
+        ]);*/
+
+        $child = children::where('id', $id)->get();
+
+
+        return $child;
+
+    }
 }

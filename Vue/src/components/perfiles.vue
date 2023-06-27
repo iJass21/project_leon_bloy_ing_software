@@ -93,7 +93,7 @@
 
                 </div>
 
-                <a href="/PerfilNinoPanel"
+                <a href="/PerfilTrabajadoresPanel"
                     class="text-uppercase d-inline-block font-weight-medium lts-2px ml-2 mb-2 text-center styled-link">
                     Ver Lista
                 </a>

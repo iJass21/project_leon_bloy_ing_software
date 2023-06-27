@@ -11,6 +11,7 @@ use App\Http\Controllers\motivo_childController;
 use App\Http\Controllers\descrip_alertaController;
 use App\Http\Controllers\motivo_ingresoController;
 use App\Http\Controllers\adulto_responsableController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,8 @@ Route::get('/verChildren', [ childrenController::class, 'index']);
 
 Route::get('/children/{id}', [ childrenController::class, 'show']);
 
+Route::patch('/children/{id}/edit', [ childrenController::class, 'update']);
+
 Route::post('/motivoingreso', [ motivo_ingresoController::class, 'store']);
 
 Route::post('/fichas',[ ficha_childController::class, 'store']);
@@ -74,3 +77,7 @@ Route::post('/alertas',[ alertaController::class, 'store']);
 Route::post('/motivo_child', [ motivo_childController::class, 'store']);
 
 Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);
+
+Route::get('/verTrabajadores', [ UserController::class, 'index']);
+
+Route::get('/trabajador/{id}', [ UserController::class, 'show']);
