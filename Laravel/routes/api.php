@@ -11,6 +11,7 @@ use App\Http\Controllers\motivo_childController;
 use App\Http\Controllers\descrip_alertaController;
 use App\Http\Controllers\motivo_ingresoController;
 use App\Http\Controllers\adulto_responsableController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,5 @@ Route::post('/alertas',[ alertaController::class, 'store']);
 Route::post('/motivo_child', [ motivo_childController::class, 'store']);
 
 Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);
+
+Route::get('/verTrabajadores', [ UserController::class, 'index']);
