@@ -30,7 +30,13 @@
           <div class="col-lg-9" id="Profile">
             <div class="about-text go-to">
               <a v-for="children in childrens" :key="children.id">{{ getAdultoID(children.adulto_responsable_id) }}
-                <h3 class="dark-color">{{ children.name }} {{ children.lastname }}</h3>
+                
+                <div class="edicion-lapiz">
+                  <h3 class="dark-color">{{ children.name }} {{ children.lastname }}</h3>
+                  <button @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
+                </div>
+                
+
                 <p id="MARK"><strong>Descripcion:</strong> {{ children.description }}</p>
                 <p id="MARK"><strong>Observaciones:</strong> {{ children.obs }}</p>
                 <div class="row about-list" id="INFO">
@@ -68,7 +74,7 @@
                   </div>
                 </div>
             <div>
-              <button @click="redirectToPerfilNino(children.id)" class="button-32" role="button">Egresar Niño</button>
+              <button @click="redirectToPerfilNino(children.id)" class="button-32" role="button">Ver ficha</button>
             </div>
           </a>
           </div>
@@ -109,6 +115,9 @@ export default {
     },
     redirectToPerfilNino(childId) {
       this.$router.push({ name: 'FichaNino', params: { id: childId } });
+    },
+    editarNino(childId) {
+      this.$router.push({ name: 'editarNino', params: { id: childId } });
     },
     calculateAge(fecha) {
       const now = moment();

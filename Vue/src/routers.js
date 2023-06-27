@@ -15,6 +15,8 @@ import PerfilResponsable from './components/PerfilResponsable.vue';
 import TrabajadorPanel from './components/Trabajador.vue';
 import{createRouter, createWebHistory} from 'vue-router';
 
+import editarNino from './components/editarNino.vue';
+
 
 const routes = [
     {
@@ -88,6 +90,11 @@ const routes = [
         path: '/PerfilTrabajadoresPanel', // La ruta acepta un parámetro llamado "id2
         name: 'PerfilTrabajadoresPanel',
         component: PerfilTrabajadoresPanel
+    },
+    {
+        path: '/editarNino/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'editarNino',
+        component: editarNino
     },
 
 ];
