@@ -51,4 +51,39 @@ class childrenController extends Controller
         return $children;
 
     }
+
+    public function update($id, Request $request){
+
+        //$children = children::where('id', $id)->get();
+
+        $child = children::where('children_id', $id)->get();
+/*
+        $this->validate($request,[
+            'adult_respon_id' => 'required',
+            'name' => 'required|string',
+            'lastname'  => 'required|string',
+            'rut' => 'required|integer',
+            'f_nac' => 'required|date',
+            'obs' => 'required|string',
+            'direccion' => 'required|string',
+            'phone_contact' => 'required|string',
+            'description' => 'required|string'
+        ]);
+
+        $adultos = adulto_responsable::findOrFail($request->adult_respon_id);
+        $adultos->Children()->create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'rut' => $request->rut,
+            'f_nac' => $request->f_nac,
+            'obs' => $request->obs,
+            'direccion' => $request->direccion,
+            'phone_contact' => $request->phone_contact,
+            'description' => $request->description
+        ]);*/
+
+
+        return $child;
+
+    }
 }

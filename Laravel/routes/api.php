@@ -62,6 +62,8 @@ Route::get('/verChildren', [ childrenController::class, 'index']);
 
 Route::get('/children/{id}', [ childrenController::class, 'show']);
 
+Route::patch('/children/{id}/edit', [ childrenController::class, 'update']);
+
 Route::post('/motivoingreso', [ motivo_ingresoController::class, 'store']);
 
 Route::post('/fichas',[ ficha_childController::class, 'store']);
@@ -78,4 +80,4 @@ Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);
 
 Route::get('/verTrabajadores', [ UserController::class, 'index']);
 
-Route::get('/trabajador/{id}', [ childrenController::class, 'show']);
+Route::get('/trabajador/{id}', [ UserController::class, 'show']);
