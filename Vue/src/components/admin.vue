@@ -1,13 +1,15 @@
 <template>
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hola mundo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hola mundo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     </head>
-<body>
-    <!--
+
+    <body>
+        <!--
     <header>
     <div class="inner">
       <div class="logo"><img src="../assets/fundacion.png"></div>
@@ -23,109 +25,163 @@
     </div>
   </header>-->
 
-  <HeaderComponent/>
+        <HeaderComponent />
 
-    <div class="d-flex justify-content-center" style="margin-top: 100px;">
-        <div class="col-lg-6 col-md-8 mx-auto text-center">
-            <h1 class="fw-light">Bienvenida Directora</h1>
-            <img src="../assets/admin.png" alt="Imagen directora">
+        <div class="d-flex justify-content-center" style="margin-top: 100px;">
+            <div class="col-lg-6 col-md-8 mx-auto text-center">
+                <h1 class="fw-light">Bienvenida Directora</h1>
+                <img src="../assets/admin.png" alt="Imagen directora">
 
+            </div>
         </div>
-    </div>
-    <div id="TABLAS-TITULO">
-                <h3 class="fw-light">Cantidad de niños, trabajadores y adultos activos.</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Niños</td>
-                            <td>Adultos</td>
-                            <td>Trabajadores</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ contadorChildren }}</td>
-                            <td>{{ contadorAdultos }}</td>
-                            <td>{{ contadorTrabajadores }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="TABLAS-TITULO">
+            <h3 class="fw-light">Cantidad de niños, trabajadores y adultos activos.</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Niños</td>
+                        <td>Adultos</td>
+                        <td>Trabajadores</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ contadorChildren }}</td>
+                        <td>{{ contadorAdultos }}</td>
+                        <td>{{ contadorTrabajadores }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
-</body>
+        <div class="container">
+            <div class="table">
+                <div class="table-header">
+                    <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
+                    <div class="header__item"><a id="wins" class="filter__link filter__link--number">Nombre Niño</a>
+                    </div>
+                    <div class="header__item"><a id="draws" class="filter__link filter__link--number">Fecha Alerta</a>
+                    </div>
+                    <div class="header__item"><a id="losses" class="filter__link filter__link--number">Descripcion</a>
+                    </div>
+                    <div class="header__item"><a id="losses" class="filter__link filter__link--number"
+                            @click="RedirigirIngresoNino()">Eliminar</a>
+                    </div>
+                </div>
+                <div class="table-content" v-for="alerta in alertas" :key="alerta.id">{{ getNinoID(alerta.children_id) }}
+                    <div class="table-row">
+                        <div class="table-data">{{ alerta.id }}</div>
+                        <div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}</div>
+                        <div class="table-data">{{ alerta.fecha_alerta }}</div>
+                        <div class="table-data">{{ alerta.descripcion }}</div>
+                        <div class="table-data"> <button @click="EliminarAlerta(alerta.id)"><img src="../assets/lapiz.png"
+                                    alt="Editar parámetro" class="lapiz-icon"></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
 </template>
 
 <script>
 
-    import axios from 'axios';
-    import HeaderComponent from './header.vue';
+import axios from 'axios';
+import HeaderComponent from './header.vue';
 
-    export default {
-        name: 'AdminPanel',
+export default {
+    name: 'AdminPanel',
 
-        components: {
-            HeaderComponent
+    components: {
+        HeaderComponent,
+    },
+
+    mounted() {
+        this.getNinos();
+        this.getAdultos();
+        this.getTrabajadores();
+        this.getAlertas();
+    },
+
+    data() {
+        return {
+            contadorChildren: '',
+            contadorTrabajadores: '',
+            contadorAdultos: '',
+            alertas: [],
+            ninoIDCache: {},
+            childrens: {},
+        };
+    },
+
+    methods: {
+        getAlertas() {
+            axios.get('http://127.0.0.1:8000/api/alertas/show_all')
+                .then(res => {
+                    this.alertas = res.data;
+                    console.log(this.alertas);
+                });
         },
-
-        mounted() {
-            this.getNinos();
-            this.getAdultos();
-            this.getTrabajadores();
+        EliminarAlerta(ID) {
+            axios.delete('http://127.0.0.1:8000/api/alertas-delete/' + ID)
+                .then(res => {
+                    console.log(res.data);
+                });
+            this.$router.push('/AdminPanel');
         },
-
-        data(){
-            return{
-                contadorChildren: '',
-                contadorTrabajadores: '',
-                contadorAdultos: '',
-            };
-        },
-
-        methods: {
-            RedirigirIngresoNino(){
-            this.$router.push('/CrearNino')
-            },
-            cerrarSesion(){
-                //let Token = localStorage.getItem(AccessToken);
-                console.log("cerrando sesion" /*+ Token*/);
-                axios.get(`http://127.0.0.1:8000/api/logout`,)
+        cerrarSesion() {
+            //let Token = localStorage.getItem(AccessToken);
+            console.log("cerrando sesion" /*+ Token*/);
+            axios.get(`http://127.0.0.1:8000/api/logout`,)
                 .then(data => {
-                console.log(data);
+                    console.log(data);
                 })
                 .catch((error) => {
-                    if(error.response.status === 401){
+                    if (error.response.status === 401) {
                         console.log("no autenticado");
                     }
                 });
-            },
-            getNinos() {
+        },
+        getNinos() {
             axios.get('http://127.0.0.1:8000/api/children-count')
                 .then(res => {
                     this.contadorChildren = res.data;
                     console.log(this.contadorChildren);
                 });
-            },
-            getAdultos() {
+        },
+        getAdultos() {
             axios.get('http://127.0.0.1:8000/api/adultos-count')
                 .then(res => {
                     this.contadorAdultos = res.data;
                     console.log(this.contadorAdultos);
                 });
-             },
-            getTrabajadores() {
+        },
+        getTrabajadores() {
             axios.get('http://127.0.0.1:8000/api/Trabajadores-count')
                 .then(res => {
                     this.contadorTrabajadores = res.data;
                     console.log(this.contadorTrabajadores);
                 });
-             },
-
         },
-        
-    }
+        getNinoID(ID) {
+            if (!this.ninoIDCache[ID]) {
+                axios.get('http://127.0.0.1:8000/api/children/' + ID)
+                    .then(res => {
+                        this.childrens = res.data;
+                        console.log(this.childrens);
+                        this.ninoIDCache[ID] = this.childrens;
+                    });
+            } else {
+                this.childrens = this.ninoIDCache[ID]; // Obtiene el resultado de la caché
+            }
+        },
+
+    },
+
+}
 </script>
 
 
 <style>
-    @import '../assets/css/admincss.css';
+@import '../assets/css/admincss.css';
+@import '../assets/css/ListaAlertas.css';
 </style>

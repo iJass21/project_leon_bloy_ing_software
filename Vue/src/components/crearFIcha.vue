@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <HeaderComponent/>
+        <HeaderComponent />
         <div class="d-flex justify-content-center mt-5">
             <form @submit.prevent="llenarFIcha()" class="my-form">
                 <div class="container">
@@ -23,7 +23,7 @@
 
                         <div class="col-md-6 col-sm-12">
                             <div class="styled-input" style="float:right;">
-                                <input type="text" value="FECHA INGRESO" readonly/>                                
+                                <input type="text" value="FECHA INGRESO" readonly />
                             </div>
                         </div>
 
@@ -35,14 +35,14 @@
 
                         <div class="col-md-6 col-sm-12">
                             <div class="styled-input" style="float:right;">
-                                <input type="text" value="FECHA EGRESO" readonly/>                                
+                                <input type="text" value="FECHA EGRESO" readonly />
                             </div>
                         </div>
 
                         <div class="col-md-6 col-sm-12">
                             <div class="styled-input" style="float:right;">
                                 <input type="date" required v-model="ficha.fec_salida" />
-                                
+
                             </div>
                         </div>
 
@@ -74,15 +74,17 @@
 import axios from 'axios';
 import HeaderComponent from './header.vue';
 
+
 export default {
     name: 'CrearFicha',
-    components:{
+    components: {
         HeaderComponent,
     },
     data() {
         return {
             children: {
                 id: '',
+                papeleo: ''
             },
             ficha: {
                 children_id: '',
@@ -91,12 +93,22 @@ export default {
                 objetivos: '',
                 description: ''
             },
+            alertas: {
+                fecha_alerta: '',
+                children_id: '',
+                descripcion: ''
+            },
+            //fecha_alerta,
 
             errorMessage: ''
         }
     },
     mounted() {
+
         this.ObtenerChildren();
+        this.crearAlerta();
+        //console.log('papeleo:'+this.children.papeleo);
+
     },
     methods: {
         ObtenerChildren() {
@@ -104,14 +116,75 @@ export default {
 
             axios.get('http://127.0.0.1:8000/api/children_rut/' + this.$route.params.rut)
                 .then(response => {
-                    console.log(response.data[0].id);
+                    console.log(response.data[0].papeleo);
                     this.children.id = response.data[0].id;
+                    this.children.papeleo = response.data[0].papeleo;
                     this.ficha.children_id = response.data[0].id;
                     //this.$router.push('/AdminPanel');
+
                 })
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        crearAlerta() {
+
+            let papeleo = null;
+
+            axios.get('http://127.0.0.1:8000/api/children_rut/' + this.$route.params.rut)
+                .then(response => {
+                    console.log('data.papeleo: ' + response.data[0].papeleo);
+                    this.children.id = response.data[0].id;
+                    papeleo = response.data[0].papeleo;
+                    this.ficha.children_id = response.data[0].id;
+                    //this.$router.push('/AdminPanel');
+
+                    if (papeleo == true) {
+                        this.alertas.children_id = this.children.id;
+                        this.alertas.descripcion = 'Alerta de papeleo';
+
+                        const fecha = new Date();
+                        this.fechaActual = this.formatearFecha(fecha);
+
+                        fecha.setDate(fecha.getDate() + 10); // Sumar 10 días
+
+                        this.fechaFutura = this.formatearFecha(fecha);
+
+                        console.log(this.fechaFutura);
+
+                        let datas = {
+                            fecha_alerta: this.fechaFutura,
+                            descripcion: 'alerta de papeleo',
+                            children_id: this.children_id
+                        }
+
+                        console.log(datas);
+                        axios
+                            .post('http://127.0.0.1:8000/api/alertas', datas)
+                            .then(response => {
+                                console.log(response);
+
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    } else {
+                        console.log('NO ENTRO A IF PAPELEO TRUE');
+                    }
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+
+        },
+        formatearFecha(fecha) {
+            const año = fecha.getFullYear();
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            const día = String(fecha.getDate()).padStart(2, '0');
+
+            return `${año}-${mes}-${día}`;
         },
         llenarFIcha() {
             console.log(this.ficha);

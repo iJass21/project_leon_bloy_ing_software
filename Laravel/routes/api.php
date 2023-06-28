@@ -82,6 +82,11 @@ Route::patch('/update-fichas/{id}',[ ficha_childController::class, 'update']);
 
 Route::post('/alertas',[ alertaController::class, 'store']);
 
+Route::get('/alertas/show_all',[ alertaController::class, 'index']);
+
+Route::delete('/alertas-delete/{id}',[ alertaController::class, 'destroy']);
+
+
 Route::post('/motivo_child', [ motivo_childController::class, 'store']);
 
 Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);

@@ -28,4 +28,18 @@ class alertaController extends Controller
             //redireccion
             return $request->all();
     }
+
+    public function index(){
+        # $posts = Post::where('user_id', $user->id)->latest()->paginate(20);
+        $alertas = alerta::all();
+        return $alertas;
+    }
+
+    public function destroy($id){
+
+        $alerta = alerta::where('id', $id)->delete();
+        return $alerta;
+
+    }
+
 }

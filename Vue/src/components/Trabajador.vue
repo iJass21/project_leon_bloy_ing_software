@@ -13,8 +13,6 @@
 
         <body>
             <HeaderComponent />
-
-
             <div class="d-flex justify-content-center" style="margin-top: 200px;">
                 <div class="col-lg-6 col-md-8 mx-auto text-center">
                     <h1 class="fw-light">Bienvenida Trabajadora</h1>
@@ -28,6 +26,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="TABLAS-TITULO">
                 <h3 class="fw-light">Cantidad de niños, trabajadores y adultos activos.</h3>
                 <table>
@@ -47,8 +46,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="container">
 
+            <div class="container" >
                 <div class="table">
                     <div class="table-header">
                         <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
@@ -58,13 +57,20 @@
                         </div>
                         <div class="header__item"><a id="losses" class="filter__link filter__link--number">Descripcion</a>
                         </div>
+                        <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
+                        <div class="header__item"><a id="losses" class="filter__link filter__link--number"
+                                @click="RedirigirIngresoNino()">Eliminar</a>
+                                
+                        </div>
                     </div>
-                    <div class="table-content">
+                    <div class="table-content" v-for="alerta in alertas" :key="alerta.id">{{ getNinoID(alerta.children_id)
+                    }}
                         <div class="table-row">
-                            <div class="table-data">Alerta1</div>
-                            <div class="table-data">2</div>
-                            <div class="table-data">0</div>
-                            <div class="table-data">1</div>
+                            <div class="table-data">{{ alerta.id }}</div>
+                            <div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}
+                            </div>
+                            <div class="table-data">{{ alerta.fecha_alerta }}</div>
+                            <div class="table-data">{{ alerta.descripcion }}</div>
                         </div>
                     </div>
                 </div>
@@ -87,6 +93,7 @@ export default {
         this.getNinos();
         this.getAdultos();
         this.getTrabajadores();
+        this.getAlertas();
     },
 
     data() {
@@ -95,12 +102,22 @@ export default {
             contadorChildren: '',
             contadorTrabajadores: '',
             contadorAdultos: '',
+            alertas: [],
+            ninoIDCache: {},
+            childrens: {},
         };
     },
     // created() {
     //     this.userCreatedAt = this.userCreatedAt;
     // },
     methods: {
+        getAlertas() {
+            axios.get('http://127.0.0.1:8000/api/alertas/show_all')
+                .then(res => {
+                    this.alertas = res.data;
+                    console.log(this.alertas);
+                });
+        },
         RedirigirIngresoNino() {
             this.$router.push('/CrearNino')
         },
@@ -138,7 +155,19 @@ export default {
             .then(res => {
                 console.log(res.data);
             });*/
-        }
+        },
+        getNinoID(ID) {
+            if (!this.ninoIDCache[ID]) {
+                axios.get('http://127.0.0.1:8000/api/children/' + ID)
+                    .then(res => {
+                        this.childrens = res.data;
+                        console.log(this.childrens);
+                        this.ninoIDCache[ID] = this.childrens;
+                    });
+            } else {
+                this.childrens = this.ninoIDCache[ID]; // Obtiene el resultado de la caché
+            }
+        },
     },
 
 }
