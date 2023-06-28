@@ -30,10 +30,12 @@
                     <div class="row input-container">
                         <div class="col-xs-12">
                             <div class="styled-input wide">
-                                <textarea required v-model="objetivos"></textarea>
+                                <textarea required v-model="ficha.objetivos"></textarea>
                                 <label>Observaciones</label>
                             </div>
                         </div>
+
+
                         <div class="col-xs-12" id="ButtonNino">
                             <button type="submit" class="btn justify-content-center btn-primary mt-4">Editar Ficha</button>
                         </div>
@@ -62,7 +64,7 @@ export default {
     methods: {
         EditFicha() {
             let result = axios.patch('http://127.0.0.1:8000/api/update-fichas/' + this.$route.params.id, {
-                objetivos: this.objetivos,
+                objetivos: this.objetivos
             });
             console.log(result);
             this.$router.push('/AdminPanel')

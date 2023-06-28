@@ -145,8 +145,7 @@ export default {
                 this.children.phone_contact &&
                 this.children.description
             ) {
-                axios
-                    .post('http://127.0.0.1:8000/api/children', this.children)
+                axios.post('http://127.0.0.1:8000/api/children', this.children)
                     .then(response => {
                         console.log(response);
                         this.$router.push('/AdminPanel');

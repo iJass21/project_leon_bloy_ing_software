@@ -52,6 +52,11 @@ class childrenController extends Controller
 
     }
 
+    public function get_id($rut) {
+        $children = children::where('rut', $rut)->get();
+        return $children;
+    }
+
     public function update(Request $request, $id ){
 
         //$children = children::where('id', $id)->get();

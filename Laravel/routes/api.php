@@ -62,6 +62,8 @@ Route::get('/verChildren', [ childrenController::class, 'index']);
 
 Route::get('/children/{id}', [ childrenController::class, 'show']);
 
+Route::get('/children_rut/{rut}', [ childrenController::class, 'get_id']);
+
 Route::patch('/children/{id}/edit', [ childrenController::class, 'update']);
 
 Route::post('/motivoingreso', [ motivo_ingresoController::class, 'store']);

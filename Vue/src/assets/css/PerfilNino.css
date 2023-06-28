@@ -170,3 +170,12 @@ body{
   content: "";
   display:none;
 }
+
+.lapiz-icon {
+  width: 25px;
+  height: 25px;
+}
+.edicion-lapiz {
+  display: flex;
+  align-items: center;
+}

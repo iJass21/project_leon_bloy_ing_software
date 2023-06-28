@@ -11,12 +11,14 @@ import EditarFicha from './components/EditarFicha.vue';
 import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
 import PerfilTrabajadoresPanel from './components/PerfilTrabajadores.vue';
 
-import PerfilResponsable from './components/PerfilResponsable.vue';
+//import PerfilResponsable from './components/PerfilResponsable.vue';
 import TrabajadorPanel from './components/Trabajador.vue';
 import{createRouter, createWebHistory} from 'vue-router';
 
 import editarNino from './components/editarNino.vue';
 import CrearFicha from './components/crearFIcha.vue';
+import PerfilResponsableFinal from './components/PerfilResponsableFinal.vue'
+import PerfilTrabajadoresFinal from './components/PerfilTrabajadorFInal.vue'
 
 
 const routes = [
@@ -53,7 +55,7 @@ const routes = [
     },
     {
         name: 'PerfilResponsable',
-        component: PerfilResponsable,
+        component: PerfilResponsablePanel,
         path: '/PerfilResponsablePanel'
     },
     {
@@ -80,7 +82,7 @@ const routes = [
     {
         path: '/PerfilResponsableFinal/:id', // La ruta acepta un parámetro llamado "id2
         name: 'PerfilResponsableFinal',
-        component: PerfilResponsablePanel
+        component: PerfilResponsableFinal
     },
     {
       path: '/TrabajadorPanel', // La ruta acepta un parámetro llamado "id2
@@ -91,6 +93,11 @@ const routes = [
         path: '/PerfilTrabajadoresPanel', // La ruta acepta un parámetro llamado "id2
         name: 'PerfilTrabajadoresPanel',
         component: PerfilTrabajadoresPanel
+    },
+    {
+        path: '/PerfilTrabajadoresFinal/:id', // La ruta acepta un parámetro llamado "id2
+        name: 'PerfilTrabajadoresFinal',
+        component: PerfilTrabajadoresFinal
     },
     {
         path: '/editarNino/:id', // La ruta acepta un parámetro llamado "id"
