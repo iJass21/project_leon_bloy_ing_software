@@ -40,21 +40,27 @@
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input">
+                <input type="text" required v-model="trabajador.cargo" />
+                <label>Cargo</label>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="styled-input">
                 <input type="integer" required v-model="trabajador.rut" />
                 <label>Rut</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
+                  <input type="text" value="FECHA NACIMIENTO" readonly />
+              </div>
+          </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="styled-input" style="float:right;">
                 <input type="date" required v-model="trabajador.f_nac" />
               </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-              <div class="styled-input">
-                <input type="text" required v-model="trabajador.cargo" />
-                <label>Cargo</label>
-              </div>
-            </div>
+
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
                 <input type="text" required v-model="trabajador.direccion" />

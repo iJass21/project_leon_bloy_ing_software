@@ -15,8 +15,9 @@
             <HeaderComponent />
             <div class="d-flex justify-content-center" style="margin-top: 200px;">
                 <div class="col-lg-6 col-md-8 mx-auto text-center">
-                    <h1 class="fw-light">Bienvenida Trabajadora</h1>
-                    <div v-if="getFechaUsuario() <= 30" class="alert alert-info">
+                    <h1 class="fw-light">Bienvenidos Trabajadores</h1>
+                    <img src="../assets/directora.jpg" alt="Imagen directora">
+                    <div class="alert alert-info">
                         Bienvenido a fundación Leon Bloy, esperamos tu permanencia en esta fundación sea del mejor de los
                         agrados,
                         queremos que sepas que dentro de esta página, podrás crear solicitudes de modificación de cada niño
@@ -51,7 +52,7 @@
                 <div class="table">
                     <div class="table-header">
                         <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
-                        <div class="header__item"><a id="wins" class="filter__link filter__link--number">Nombre Niño</a>
+                        <div class="header__item"><a id="wins" class="filter__link filter__link--number">Id Niño</a>
                         </div>
                         <div class="header__item"><a id="draws" class="filter__link filter__link--number">Fecha Alerta</a>
                         </div>
@@ -66,6 +67,7 @@
                             <div class="table-data">{{ alerta.id }}</div>
                             <!--div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}
                             </div-->
+                            <div class="table-data">{{ alerta.children_id }}</div>
                             <div class="table-data">{{ alerta.fecha_alerta }}</div>
                             <div class="table-data">{{ alerta.descripcion }}</div>
                             <div class="table-data"> <button @click="EliminarAlerta(alerta.id)"><img

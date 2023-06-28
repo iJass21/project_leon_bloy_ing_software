@@ -19,8 +19,6 @@
               <a v-for="trabajador in trabajadores" :key="trabajador.id">
                 <div class="edicion-lapiz">
                   <h3 class="dark-color">{{ trabajador.name }}</h3>
-                  <a v-if="getUsario() == 'true'" href="ruta_para_editar_parametro"><img src="../assets/lapiz.png"
-                      alt="Editar parámetro" class="lapiz-icon"></a>
                 </div>
                 <p id="MARK"><strong>Rol:</strong> {{ trabajador.cargo }}</p>
                 <div class="row about-list" id="INFO">

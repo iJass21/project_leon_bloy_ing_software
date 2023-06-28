@@ -20,8 +20,8 @@
                 
                 <div class="edicion-lapiz">
                   <h3 class="dark-color">{{ children.name }} {{ children.lastname }}</h3>
-                  <button v-if="getUsario() == 'true'" @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
-                  <button v-if="getUsario() == 'false'" @click="solicitudCambio(children.id)"><img src="../assets/solicitud.png" alt="Solicitud edición" class="lapiz-icon"></button>
+                  <button @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
+                  <!-- <button v-if="getUsario() == 'false'" @click="solicitudCambio(children.id)"><img src="../assets/lapiz.png" alt="Solicitud edición" class="lapiz-icon"></button> -->
                 </div>
                 
 

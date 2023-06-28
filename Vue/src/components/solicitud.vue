@@ -10,21 +10,22 @@
     </head>
 
     <body>
-        <HeaderComponent />
+        <HeaderComponent/>
         <div class="d-flex justify-content-center mt-5">
-            <form @submit.prevent="EditFicha()" class="my-form">
+            <!-- agregar @submit.prevent="solicitar()" al form -->
+            <form  class="my-form">
                 <div class="container">
                     <div class="row input-container">
                         <div class="col-xs-12">
                             <div class="styled-input wide">
                                 <textarea required v-model="ficha.objetivos"></textarea>
-                                <label>Observaciones</label>
+                                <label>Qué desea cambiar ?</label>
                             </div>
                         </div>
 
 
                         <div class="col-xs-12" id="ButtonNino">
-                            <button type="submit" class="btn justify-content-center btn-primary mt-4">Editar Ficha</button>
+                            <button href="#" type="submit" class="btn justify-content-center btn-primary mt-4">Enviar solicitud</button>
                         </div>
                     </div>
                 </div>
@@ -37,13 +38,13 @@
 
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import HeaderComponent from './header.vue';
 
 export default {
     // ...
-    name: 'EditarFicha',
-    components: {
+    name: 'solicitarComponent',
+    components:{
         HeaderComponent,
     },
     data() {
@@ -54,28 +55,13 @@ export default {
         }
     },
     methods: {
-        EditFicha() {
-
-            axios.patch('http://127.0.0.1:8000/api/update-fichas/' + this.$route.params.id, {
-                objetivos: this.ficha.objetivos
-            })
-                .then(data => {
-                    console.log(data);
-                    this.$router.push('/AdminPanel')
-                })
-                .catch((error) => {
-                    console.log(error.response);
-                });
-
-            /*let result = axios.patch('http://127.0.0.1:8000/api/update-fichas/' + this.$route.params.id, {
-                objetivos: this.objetivos
-            })
-                .catch((error) => {
-                    console.log(error.response);
-                });*/
-            //console.log(result);
-            //this.$router.push('/AdminPanel')
-        },
+        // solicitar() {
+        //     // let result = axios.patch('http://127.0.0.1:8000/api/update-fichas/' + this.$route.params.id, {
+        //     //     objetivos: this.objetivos
+        //     // });
+        //     // console.log(result);
+        //     // this.$router.push('/AdminPanel')
+        // },
         RedirigirAdminPanel() {
             this.$router.push('/AdminPanel')
         }
