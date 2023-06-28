@@ -67,10 +67,10 @@
                             @click="RedirigirIngresoNino()">Eliminar</a>
                     </div>
                 </div>
-                <div class="table-content" v-for="alerta in alertas" :key="alerta.id">{{ getNinoID(alerta.children_id) }}
+                <div class="table-content" v-for="alerta in alertas" :key="alerta.id">
                     <div class="table-row">
                         <div class="table-data">{{ alerta.id }}</div>
-                        <div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}</div>
+                        <!--div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}</div-->
                         <div class="table-data">{{ alerta.fecha_alerta }}</div>
                         <div class="table-data">{{ alerta.descripcion }}</div>
                         <div class="table-data"> <button @click="EliminarAlerta(alerta.id)"><img src="../assets/lapiz.png"
@@ -107,9 +107,16 @@ export default {
             contadorChildren: '',
             contadorTrabajadores: '',
             contadorAdultos: '',
-            alertas: [],
-            ninoIDCache: {},
-            childrens: {},
+            alertas: {
+                fecha_alerta: '',
+                children_id: '',
+                descripcion: ''
+            },
+            childrens: {
+                id: '',
+                name: ''
+            },
+            ninoIDCache: [],
         };
     },
 
@@ -121,12 +128,12 @@ export default {
                     console.log(this.alertas);
                 });
         },
+
         EliminarAlerta(ID) {
             axios.delete('http://127.0.0.1:8000/api/alertas-delete/' + ID)
                 .then(res => {
                     console.log(res.data);
                 });
-            this.$router.push('/AdminPanel');
         },
         cerrarSesion() {
             //let Token = localStorage.getItem(AccessToken);
@@ -173,6 +180,13 @@ export default {
             } else {
                 this.childrens = this.ninoIDCache[ID]; // Obtiene el resultado de la caché
             }
+        },
+        getFechaUsuario() {
+            console.log(localStorage.getItem("id_trabajador"));
+            /*axios.get('http://127.0.0.1:8000/api/trabajador/' + localStorage.getItem(id_trabajador))
+            .then(res => {
+                console.log(res.data);
+            });*/
         },
 
     },

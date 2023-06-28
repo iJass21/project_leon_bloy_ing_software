@@ -21,6 +21,7 @@
                 <div class="edicion-lapiz">
                   <h3 class="dark-color">{{ children.name }} {{ children.lastname }}</h3>
                   <button v-if="getUsario() == 'true'" @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
+                  <button v-if="getUsario() == 'false'" @click="solicitudCambio(children.id)"><img src="../assets/solicitud.png" alt="Solicitud edición" class="lapiz-icon"></button>
                 </div>
                 
 
@@ -112,6 +113,9 @@ export default {
     },
     editarNino(childId) {
       this.$router.push({ name: 'editarNino', params: { id: childId } });
+    },
+    solicitudCambio(childId) {
+      this.$router.push({ name: 'solicitudCambio', params: { id: childId } });
     },
     calculateAge(fecha) {
       const now = moment();

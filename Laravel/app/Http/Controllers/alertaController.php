@@ -13,7 +13,7 @@ class alertaController extends Controller
     public function store(Request $request){
 
         $this->validate($request,[
-            'children_id' => 'required',
+            'children_id' => 'required|int',
             'fecha_alerta' => 'required|date',
             'descripcion' => 'required|string'
         ]);

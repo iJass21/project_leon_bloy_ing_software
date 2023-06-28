@@ -47,7 +47,7 @@
                 </table>
             </div>
 
-            <div class="container" >
+            <div class="container">
                 <div class="table">
                     <div class="table-header">
                         <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
@@ -57,20 +57,19 @@
                         </div>
                         <div class="header__item"><a id="losses" class="filter__link filter__link--number">Descripcion</a>
                         </div>
-                        <div class="header__item"><a id="name" class="filter__link">Id Alerta</a></div>
                         <div class="header__item"><a id="losses" class="filter__link filter__link--number"
                                 @click="RedirigirIngresoNino()">Eliminar</a>
-                                
                         </div>
                     </div>
-                    <div class="table-content" v-for="alerta in alertas" :key="alerta.id">{{ getNinoID(alerta.children_id)
-                    }}
+                    <div class="table-content" v-for="alerta in alertas" :key="alerta.id">
                         <div class="table-row">
                             <div class="table-data">{{ alerta.id }}</div>
-                            <div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}
-                            </div>
+                            <!--div class="table-data" v-for="children in childrens" :key="children.id">{{ children.name }}
+                            </div-->
                             <div class="table-data">{{ alerta.fecha_alerta }}</div>
                             <div class="table-data">{{ alerta.descripcion }}</div>
+                            <div class="table-data"> <button @click="EliminarAlerta(alerta.id)"><img
+                                        src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button></div>
                         </div>
                     </div>
                 </div>
@@ -80,15 +79,17 @@
 </template>
 
 <script>
-//import Header from './components/header.vue';
+
 import axios from 'axios';
 import HeaderComponent from './header.vue';
 
 export default {
-    name: 'TrabajadorPanel',
+    name: 'AdminPanel',
+
     components: {
         HeaderComponent,
     },
+
     mounted() {
         this.getNinos();
         this.getAdultos();
@@ -98,18 +99,22 @@ export default {
 
     data() {
         return {
-            userCreatedAt: null,
             contadorChildren: '',
             contadorTrabajadores: '',
             contadorAdultos: '',
-            alertas: [],
-            ninoIDCache: {},
-            childrens: {},
+            alertas: {
+                fecha_alerta: '',
+                children_id: '',
+                descripcion: ''
+            },
+            childrens: {
+                id: '',
+                name: ''
+            },
+            ninoIDCache: [],
         };
     },
-    // created() {
-    //     this.userCreatedAt = this.userCreatedAt;
-    // },
+
     methods: {
         getAlertas() {
             axios.get('http://127.0.0.1:8000/api/alertas/show_all')
@@ -118,15 +123,25 @@ export default {
                     console.log(this.alertas);
                 });
         },
-        RedirigirIngresoNino() {
-            this.$router.push('/CrearNino')
+
+        EliminarAlerta(ID) {
+            axios.delete('http://127.0.0.1:8000/api/alertas-delete/' + ID)
+                .then(res => {
+                    console.log(res.data);
+                });
         },
-        fechaDesdeIngreso() {
-            const today = new Date(); // Fecha actual
-            const createdAt = new Date(this.userCreatedAt); // Fecha a Date
-            const timeDiff = Math.abs(today.getTime() - createdAt.getTime()); // Diferencia en milisegundos
-            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Convierte milisegundos a días
-            return daysDiff;
+        cerrarSesion() {
+            //let Token = localStorage.getItem(AccessToken);
+            console.log("cerrando sesion" /*+ Token*/);
+            axios.get(`http://127.0.0.1:8000/api/logout`,)
+                .then(data => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    if (error.response.status === 401) {
+                        console.log("no autenticado");
+                    }
+                });
         },
         getNinos() {
             axios.get('http://127.0.0.1:8000/api/children-count')
@@ -149,13 +164,6 @@ export default {
                     console.log(this.contadorTrabajadores);
                 });
         },
-        getFechaUsuario() {
-            console.log(localStorage.getItem("id_trabajador"));
-            /*axios.get('http://127.0.0.1:8000/api/trabajador/' + localStorage.getItem(id_trabajador))
-            .then(res => {
-                console.log(res.data);
-            });*/
-        },
         getNinoID(ID) {
             if (!this.ninoIDCache[ID]) {
                 axios.get('http://127.0.0.1:8000/api/children/' + ID)
@@ -168,6 +176,14 @@ export default {
                 this.childrens = this.ninoIDCache[ID]; // Obtiene el resultado de la caché
             }
         },
+        getFechaUsuario() {
+            console.log(localStorage.getItem("id_trabajador"));
+            /*axios.get('http://127.0.0.1:8000/api/trabajador/' + localStorage.getItem(id_trabajador))
+            .then(res => {
+                console.log(res.data);
+            });*/
+        },
+
     },
 
 }

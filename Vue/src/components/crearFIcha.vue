@@ -141,7 +141,7 @@ export default {
 
                     if (papeleo == true) {
                         this.alertas.children_id = this.children.id;
-                        this.alertas.descripcion = 'Alerta de papeleo';
+                        this.alertas.descripcion = 'Alerta de papeleo Nacionalidad';
 
                         const fecha = new Date();
                         this.fechaActual = this.formatearFecha(fecha);
@@ -155,7 +155,7 @@ export default {
                         let datas = {
                             fecha_alerta: this.fechaFutura,
                             descripcion: 'alerta de papeleo',
-                            children_id: this.children_id
+                            children_id: this.children.id
                         }
 
                         console.log(datas);

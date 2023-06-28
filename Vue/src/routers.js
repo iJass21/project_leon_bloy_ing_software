@@ -8,6 +8,7 @@ import PerfilResponsablePanel from './components/PerfilResponsable.vue'
 import PerfilNinoFInalPanel from './components/PerfilNinoFinal.vue';
 import FichaNino from './components/FichaNino.vue';
 import EditarFicha from './components/EditarFicha.vue';
+import solicitudCambio from './components/solicitud.vue';
 import CrearTrabajadorPanel from './components/CrearTrabajador.vue';
 import PerfilTrabajadoresPanel from './components/PerfilTrabajadores.vue';
 
@@ -19,7 +20,7 @@ import editarNino from './components/editarNino.vue';
 import CrearFicha from './components/crearFIcha.vue';
 import PerfilResponsableFinal from './components/PerfilResponsableFinal.vue'
 import PerfilTrabajadoresFinal from './components/PerfilTrabajadorFInal.vue'
-import VerListaAlertas from './components/VerListaAlertas.vue'
+
 
 
 const routes = [
@@ -70,6 +71,11 @@ const routes = [
         component: FichaNino
     },
     {
+        path: '/solicitudCambio/:id', // La ruta acepta un parámetro llamado "id"
+        name: 'solicitudCambio',
+        component: solicitudCambio
+    },
+    {
         path: '/EditarFicha/:id', // La ruta acepta un parámetro llamado "id"
         name: 'EditarFicha',
         component: EditarFicha
@@ -109,11 +115,6 @@ const routes = [
         path: '/CrearFicha/:rut', // La ruta acepta un parámetro llamado "id"
         name: 'CrearFicha',
         component: CrearFicha
-    },
-    {
-        path: '/VerListaAlertas',
-        name: 'VerListaAlertas',
-        component: VerListaAlertas
     },
 
 ];
