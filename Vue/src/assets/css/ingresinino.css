@@ -64,6 +64,10 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
     pointer-events: none;
 }
 
+.container {
+    display: block;
+}
+
 .styled-input.wide { 
     width: 650px;
     max-width: 100%;
@@ -100,6 +104,7 @@ textarea {
     width: 650px;
     max-width: 100%;
     margin: 20px auto 25px auto;
+    
 }
 
 .submit-btn {
@@ -156,4 +161,23 @@ input[type=checkbox]:checked + label {
     padding: 10px;
     border-radius: 4px;
     z-index: 9999;
+}
+
+#papeleo {
+    color: black;
+    background: white;
+    border: solid 2px;
+    margin-left: 50px;
+}
+
+#div_papeleo {
+    display: -webkit-box;
+}
+
+#input_papeleo {
+    margin: 34px 22px auto auto;
+}
+
+#container_ingreso_nino {
+    display: block;
 }

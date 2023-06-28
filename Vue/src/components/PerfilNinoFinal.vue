@@ -10,20 +10,7 @@
   </head>
 
   <body>
-    <header>
-    <div class="inner">
-      <div class="logo"><img src="../assets/fundacion.png"></div>
-      <div class="burger"></div>
-      <nav>
-        <a  href="/AdminPanel">Inicio</a>
-        <a href="/CrearNino">Integrar Niño</a>
-        <a href="/AdultCreatePanel">Crear Adultos</a>
-        <a href="/PerfilesPanel">Perfiles</a>
-        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-      </nav>
-      <a href="/" class="donate-link">Cerrar Sesion</a>
-    </div>
-  </header>
+    <HeaderComponent/>
     <section class="section about-section gray-bg" id="about">
       <div class="container" style="padding-right: 200px;">
         <div class="row align-items-center flex-row-reverse">
@@ -33,7 +20,7 @@
                 
                 <div class="edicion-lapiz">
                   <h3 class="dark-color">{{ children.name }} {{ children.lastname }}</h3>
-                  <button @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
+                  <button v-if="getUsario() == 'true'" @click="editarNino(children.id)"><img src="../assets/lapiz.png" alt="Editar parámetro" class="lapiz-icon"></button>
                 </div>
                 
 
@@ -87,10 +74,14 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
+import HeaderComponent from './header.vue';
 
 export default {
   // ...
   name: 'PerfilNinoFInalPanel',
+  components:{
+    HeaderComponent
+  },
   mounted() {
     this.getNinoID();
     this.calculateAge();
@@ -102,6 +93,9 @@ export default {
       age: null,
       adultos: {},
       adultoIDCache: {}, // Almacenamiento en caché para getAdultoID
+      directora:{
+        direct:'',
+      },
     }
   },
   methods: {
@@ -136,6 +130,11 @@ export default {
       } else {
         this.adultos = this.adultoIDCache[ID]; // Obtiene el resultado de la caché
       }
+    },
+    getUsario() {
+      this.directora.direct = localStorage.getItem("directora");
+      console.log(this.directora.direct);
+      return (this.directora.direct);
     },
   }
 };

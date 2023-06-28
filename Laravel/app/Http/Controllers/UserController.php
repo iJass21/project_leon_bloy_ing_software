@@ -22,4 +22,11 @@ class UserController extends Controller
         return $adulto;
 
     }
+
+    public function contar(){
+        
+
+        $user = User::count();
+        return $user;
+    }
 }

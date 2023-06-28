@@ -13,6 +13,8 @@ class children extends Model
         'name',
         'lastname',
         'rut',
+        'nacionalidad',
+        'papeleo',
         'f_nac',
         'obs',
         'direccion',

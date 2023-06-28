@@ -9,23 +9,10 @@
   </head>
 
   <body>
-    <header>
-      <div class="inner">
-        <div class="logo"><img src="../assets/fundacion.png"></div>
-        <div class="burger"></div>
-        <nav>
-          <a href="/AdminPanel">Inicio</a>
-          <a href="/CrearNino">Integrar Niño</a>
-          <a href="/AdultCreatePanel">Crear Adultos</a>
-          <a href="/PerfilesPanel">Perfiles</a>
-          <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-        </nav>
-        <a href="/" class="donate-link">Cerrar Sesion</a>
-      </div>
-    </header>
+    <HeaderComponent/>
     <div class="d-flex justify-content-center mt-5">
       <form @submit.prevent="IngresarChildren()" class="my-form">
-        <div class="container">
+        <div class="container" id="container_ingreso_nino">
           <div class="row">
             <h1 class="textTittle">Ingresar niño</h1>
           </div>
@@ -55,6 +42,18 @@
               <div class="styled-input">
                 <input type="integer" required v-model="children.rut" />
                 <label>Rut</label>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="styled-input">
+                <input type="integer" required v-model="children.nacionalidad" />
+                <label>Nacionalidad</label>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="styled-input" id="div_papeleo">
+                <input id="input_papeleo" type="checkbox" required v-model="children.papeleo" />
+                <label id="papeleo">Necesita papeleo?</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
@@ -99,9 +98,13 @@
 
 <script>
 import axios from 'axios';
+import HeaderComponent from './header.vue';
 
 export default {
   name: 'NinoPanel',
+  components:{
+        HeaderComponent
+  },
   data() {
     return {
       children: {
@@ -109,6 +112,8 @@ export default {
         name: '',
         lastname: '',
         rut: '',
+        nacionalidad: '',
+        papeleo: '',
         f_nac: '',
         obs: '',
         direccion: '',
@@ -125,12 +130,15 @@ export default {
         this.children.name &&
         this.children.lastname &&
         this.children.rut &&
+        this.children.nacionalidad &&
+        this.children.papeleo &&
         this.children.f_nac &&
         this.children.obs &&
         this.children.direccion &&
         this.children.phone_contact &&
         this.children.description
       ) {
+        console.log(this.children);
         axios
         .post('http://127.0.0.1:8000/api/children', this.children)
           .then(response => {

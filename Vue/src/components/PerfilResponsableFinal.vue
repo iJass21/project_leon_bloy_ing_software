@@ -10,20 +10,7 @@
   </head>
 
   <body>
-    <header>
-    <div class="inner">
-      <div class="logo"><img src="../assets/fundacion.png"></div>
-      <div class="burger"></div>
-      <nav>
-        <a  href="/AdminPanel">Inicio</a>
-        <a href="/CrearNino">Integrar Niño</a>
-        <a href="/AdultCreatePanel">Crear Adultos</a>
-        <a href="/PerfilesPanel">Perfiles</a>
-        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-      </nav>
-      <a href="/" class="donate-link">Cerrar Sesion</a>
-    </div>
-  </header>
+    <HeaderComponent/>
     <section class="section about-section gray-bg" id="about">
       <div class="container" style="padding-right: 200px;">
         <div class="row align-items-center flex-row-reverse">
@@ -73,11 +60,14 @@
 </template>
 <script>
 import axios from 'axios';
-
+import HeaderComponent from './header.vue';
 
 export default {
   // ...
   name: 'PerfilResponsableFinal',
+  components:{
+    HeaderComponent
+  },
   mounted() {
     this.getNinoID();
   },

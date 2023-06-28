@@ -10,20 +10,7 @@
     </head>
 
     <body>
-        <header>
-            <div class="inner">
-                <div class="logo"><img src="../assets/fundacion.png"></div>
-                <div class="burger"></div>
-                <nav>
-                    <a href="/AdminPanel">Inicio</a>
-                    <a href="/CrearNino">Integrar Niño</a>
-                    <a href="/AdultCreatePanel">Crear Adultos</a>
-                    <a href="/PerfilesPanel">Perfiles</a>
-                    <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-                </nav>
-                <a href="/" class="donate-link">Cerrar Sesion</a>
-            </div>
-        </header>
+        <HeaderComponent/>
         <div id="app" class="list-group list-group-flush border-bottom scrollarea">
             <div class="grid-container">
                 <a v-for="children in paginatedChildrens" :key="children.id" href="#" id="list"
@@ -49,9 +36,13 @@
 
 <script>
 import axios from 'axios';
+import HeaderComponent from './header.vue';
 
 export default {
     name: 'PerfilNinoPanel',
+    components: {
+        HeaderComponent
+    },
     mounted() {
         this.getNino();
     },

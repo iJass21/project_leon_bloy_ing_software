@@ -14,12 +14,16 @@ class alertaController extends Controller
 
         $this->validate($request,[
             'children_id' => 'required',
-            'fecha_alerta' => 'required|date'
+            'fecha_alerta' => 'required|date',
+            'descripcion' => 'required|string'
         ]);
 
         $children = children::findOrFail($request->children_id);
         $children->alertas()->create([
-            'fecha_alerta' => $request->fecha_alerta
+            'fecha_alerta' => $request->fecha_alerta,
+            'children_id' => $request->children_id,
+            'descripcion' => $request->descripcion,
+            
         ]);
             //redireccion
             return $request->all();

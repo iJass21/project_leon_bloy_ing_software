@@ -53,4 +53,9 @@ class adulto_responsableController extends Controller
         return $adulto;
 
     }
+    public function contar(){
+    
+        $adultos = adulto_responsable::count();
+        return $adultos;
+    }
 }

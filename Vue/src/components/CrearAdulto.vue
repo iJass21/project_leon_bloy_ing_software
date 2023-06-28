@@ -8,20 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<header>
-  <div class="inner">
-    <div class="logo"><img src="../assets/fundacion.png"></div>
-    <div class="burger"></div>
-    <nav>
-      <a  href="/AdminPanel">Inicio</a>
-      <a href="/CrearNino">Integrar Niño</a>
-      <a href="/AdultCreatePanel">Crear Adultos</a>
-      <a href="/PerfilesPanel">Perfiles</a>
-      <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-    </nav>
-    <a href="/" class="donate-link">Cerrar Sesion</a>
-  </div>
-</header>
+  <HeaderComponent/>
   <div class="d-flex justify-content-center mt-5">
     <form @submit.prevent="IngresarAdultos()" class="my-form">
       <div class="container">
@@ -106,9 +93,13 @@
 
 <script>
 import axios from 'axios'
+import HeaderComponent from './header.vue';
 
 export default {
   name: 'AdultCreatePanel',
+  components:{
+        HeaderComponent,
+  },
   data() {
     return {
       adultos: {

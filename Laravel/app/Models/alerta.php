@@ -10,7 +10,8 @@ class alerta extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fecha_alerta'
+        'fecha_alerta',
+        'descripcion'
     ];
 
     public function Children(){

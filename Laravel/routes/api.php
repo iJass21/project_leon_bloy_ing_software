@@ -54,9 +54,13 @@ Route::post('/adultos',[ adulto_responsableController::class, 'store']);
 
 Route::get('/VerAdultos',[ adulto_responsableController::class, 'index']);
 
+Route::get('/adultos-count',[ adulto_responsableController::class, 'contar']);
+
 Route::get('/adultos/{id}', [ adulto_responsableController::class, 'show']);
 
 Route::post('/children', [ childrenController::class, 'store']);
+
+Route::get('/children-count', [ childrenController::class, 'contar']);
 
 Route::get('/verChildren', [ childrenController::class, 'index']);
 
@@ -83,5 +87,7 @@ Route::post('/motivo_child', [ motivo_childController::class, 'store']);
 Route::post('/descrip_alerta', [ descrip_alertaController::class, 'store']);
 
 Route::get('/verTrabajadores', [ UserController::class, 'index']);
+
+Route::get('/Trabajadores-count', [ UserController::class, 'contar']);
 
 Route::get('/trabajador/{id}', [ UserController::class, 'show']);

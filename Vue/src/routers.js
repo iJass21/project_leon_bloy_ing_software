@@ -19,6 +19,7 @@ import editarNino from './components/editarNino.vue';
 import CrearFicha from './components/crearFIcha.vue';
 import PerfilResponsableFinal from './components/PerfilResponsableFinal.vue'
 import PerfilTrabajadoresFinal from './components/PerfilTrabajadorFInal.vue'
+import VerListaAlertas from './components/VerListaAlertas.vue'
 
 
 const routes = [
@@ -109,7 +110,11 @@ const routes = [
         name: 'CrearFicha',
         component: CrearFicha
     },
-
+    {
+        path: '/VerListaAlertas',
+        name: 'VerListaAlertas',
+        component: VerListaAlertas
+    },
 
 ];
 

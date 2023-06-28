@@ -17,6 +17,8 @@ class childrenController extends Controller
             'name' => 'required|string',
             'lastname'  => 'required|string',
             'rut' => 'required|integer',
+            'nacionalidad' => 'required|string',
+            'papeleo' => 'required|boolean',
             'f_nac' => 'required|date',
             'obs' => 'required|string',
             'direccion' => 'required|string',
@@ -29,6 +31,8 @@ class childrenController extends Controller
             'name' => $request->name,
             'lastname' => $request->lastname,
             'rut' => $request->rut,
+            'nacionalidad' => $request->nacionalidad,
+            'papeleo' => $request->papeleo,
             'f_nac' => $request->f_nac,
             'obs' => $request->obs,
             'direccion' => $request->direccion,
@@ -63,24 +67,7 @@ class childrenController extends Controller
 
         $child = children::where('id', $id)->get();
 
-        //ruta funcionando
-
-        /*$this->validate($request,[
-            'adult_respon_id' => 'required',
-            'name' => 'required|string',
-            'lastname'  => 'required|string',
-            'rut' => 'required|integer',
-            'f_nac' => 'required|date',
-            'obs' => 'required|string',
-            'direccion' => 'required|string',
-            'phone_contact' => 'required|string',
-            'description' => 'required|string'
-        ]);*/
-
-        /*ficha_child::where('children_id', $id)->update([
-            'objetivos' => $request['objetivos']
-        ]);*/
-
+        
         children::where('id', $id)->update([
             'name' => $request->name,
             'lastname' => $request->lastname,
@@ -92,22 +79,17 @@ class childrenController extends Controller
             'description' => $request->description
         ]);
 
-        /*
-        $child->Children()->update([
-            'name' => $request->name,
-            'lastname' => $request->lastname,
-            'rut' => $request->rut,
-            'f_nac' => $request->f_nac,
-            'obs' => $request->obs,
-            'direccion' => $request->direccion,
-            'phone_contact' => $request->phone_contact,
-            'description' => $request->description
-        ]);*/
-
         $child = children::where('id', $id)->get();
 
 
         return $child;
 
+    }
+    
+    public function contar(){
+        
+
+        $children = children::count();
+        return $children;
     }
 }

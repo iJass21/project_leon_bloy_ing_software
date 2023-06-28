@@ -10,20 +10,7 @@
     </head>
 
     <body>
-        <header>
-    <div class="inner">
-      <div class="logo"><img src="../assets/fundacion.png"></div>
-      <div class="burger"></div>
-      <nav>
-        <a  href="/AdminPanel">Inicio</a>
-        <a href="/CrearNino">Integrar Niño</a>
-        <a href="/AdultCreatePanel">Crear Adultos</a>
-        <a href="/PerfilesPanel">Perfiles</a>
-        <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-      </nav>
-      <a href="/" class="donate-link">Cerrar Sesion</a>
-    </div>
-  </header>
+        <HeaderComponent/>
         <div class="d-flex justify-content-center mt-5">
             <form @submit.prevent="EditFicha()" class="my-form">
                 <div class="container">
@@ -51,9 +38,14 @@
 
 <script>
 import axios from 'axios'
+import HeaderComponent from './header.vue';
+
 export default {
     // ...
     name: 'EditarFicha',
+    components:{
+        HeaderComponent,
+    },
     data() {
         return {
             ficha: {

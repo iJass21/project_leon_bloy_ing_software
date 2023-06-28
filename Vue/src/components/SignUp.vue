@@ -77,6 +77,7 @@
               console.log('Cargo Directora');
               this.$router.push('/AdminPanel');
               localStorage.setItem('authenticated', 'true');
+              localStorage.setItem('id_trabajador', data.data.user.id);
               localStorage.setItem('directora', 'true');
               //localStorage.setItem('AccessToken', data.data.AccessToken);
               //this.$emit('updateSidebar')
@@ -84,6 +85,7 @@
             }else if(data.status == 200 && data.data.user.id){
               console.log('Bienvenido trabajador');
               localStorage.setItem('directora', 'false');
+              localStorage.setItem('id_trabajador', data.data.user.id);
               this.$router.push('/TrabajadorPanel');
             }else{
               this.error = true;

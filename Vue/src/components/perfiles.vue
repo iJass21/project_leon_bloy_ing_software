@@ -10,20 +10,7 @@
     </head>
 
     <body>
-        <header>
-            <div class="inner">
-                <div class="logo"><img src="../assets/fundacion.png"></div>
-                <div class="burger"></div>
-                <nav>
-                    <a href="/AdminPanel">Inicio</a>
-                    <a href="/CrearNino">Integrar Niño</a>
-                    <a href="/AdultCreatePanel">Crear Adultos</a>
-                    <a href="/PerfilesPanel">Perfiles</a>
-                    <a href="/CrearTrabajadorPanel">Crear Trabajador</a>
-                </nav>
-                <a href="/" class="donate-link">Cerrar Sesion</a>
-            </div>
-        </header>
+        <HeaderComponent/>
         <div id="cards" style="display: flex;">
             <div id="cartaEspecifica" class="my-2 mx-auto p-relative bg-white shadow-1 blue-hover"
                 style="width: 360px; overflow: hidden; border-radius: 1px;">
@@ -107,8 +94,12 @@
 
 
 <script>
+import HeaderComponent from './header.vue';
 export default {
-    name: 'PerfilesPanel'
+    name: 'PerfilesPanel',
+    components: {
+        HeaderComponent
+    },
 }
 </script>
 
