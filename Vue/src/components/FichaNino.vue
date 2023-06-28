@@ -68,6 +68,7 @@ export default {
 
     mounted() {
         this.getNinoID();
+        console.log(this.$route.params.id);
     },
 
     data() {
@@ -78,10 +79,13 @@ export default {
 
     methods: {
         getNinoID() {
-            axios.get('http://127.0.0.1:8000/api/fichas/' + this.$route.params.id)
+            axios.get('http://127.0.0.1:8000/api/ficha/' + this.$route.params.id)
                 .then(res => {
                     this.fichas = res.data;
-                    console.log(this.fichas);
+                    console.log(res.data);
+                })
+                .catch((error) => {
+                    console.log(error.response.status);
                 });
         },
         redirectToEditFicha() {

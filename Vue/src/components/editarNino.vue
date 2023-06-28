@@ -24,7 +24,8 @@
             </div>
         </header>
         <div class="d-flex justify-content-center mt-5">
-            <form @submit.prevent="IngresarChildren()" class="my-form">
+            <form @submit.prevent="IngresarChildren()" class="my-form" method="POST">
+                <input type="hidden" name="_method" value="PATCH">
                 <div class="container" v-for="data in datas" :key="data.id">
                     <div class="row">
                         <h1 class="textTittle">Editar niño</h1>
@@ -159,11 +160,12 @@ export default {
 
             console.log(this.datas[0].name);
 
-            axios.post(`http://127.0.0.1:8000/api/children/`+ this.$route.params.id + `/edit`, this.datas[0])
+            axios.patch(`http://127.0.0.1:8000/api/children/`+ this.$route.params.id + `/edit`, this.datas[0])
                 .then(data => {
                     
                     if (data.data) {
                         console.log(data.data);
+                        this.$router.push('/PerfilNinoPanel');
                         
                     } else {
                         this.error = true;

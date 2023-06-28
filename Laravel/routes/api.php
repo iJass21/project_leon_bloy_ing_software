@@ -66,9 +66,11 @@ Route::patch('/children/{id}/edit', [ childrenController::class, 'update']);
 
 Route::post('/motivoingreso', [ motivo_ingresoController::class, 'store']);
 
+Route::get('/ficha/{id}',[ ficha_childController::class, 'show']);
+
 Route::post('/fichas',[ ficha_childController::class, 'store']);
 
-Route::get('/fichas/{id}',[ ficha_childController::class, 'show']);
+
 
 Route::patch('/update-fichas/{id}',[ ficha_childController::class, 'update']);
 

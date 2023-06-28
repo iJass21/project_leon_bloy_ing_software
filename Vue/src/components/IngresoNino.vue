@@ -88,7 +88,7 @@
             </div>
             <div class="col-xs-12" id="ButtonNino">
               <p class="error-message" v-if="errorMessage">{{ errorMessage }}</p>
-              <button type="submit" class="btn justify-content-center btn-primary mt-4">Crear niño</button>
+              <button  type="submit" class="btn justify-content-center btn-primary mt-4">Crear niño</button>
             </div>
           </div>
         </div>
@@ -135,13 +135,32 @@ export default {
         .post('http://127.0.0.1:8000/api/children', this.children)
           .then(response => {
             console.log(response);
-            this.$router.push('/AdminPanel');
+            console.log(this.children.rut);
+            //this.$router.push('/CrearFicha', this.children.rut);
+            this.$router.push({ name: 'CrearFicha', params: { rut: this.children.rut } });
+            //redirectToEditFicha(this.children.rut);
           })
           .catch(error => {
             console.error(error);
           });
       } 
+/*
+      let datos_fichas = [
+        //children_id = this.children.id,
+
+      ];
+
+      axios.post('http://127.0.0.1:8000/api/fichas/', datos_fichas)
+                .then(res => {
+                    this.fichas = res.data;
+                    console.log(res.data);
+                })
+                .catch((error) => {
+                    console.log(error.response.status);
+                });*/
+
     },
+
   }
 };
 </script>

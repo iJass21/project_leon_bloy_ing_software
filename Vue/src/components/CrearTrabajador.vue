@@ -35,48 +35,48 @@
           <div class="row input-container">
             <div class="col-xs-12">
               <div class="styled-input wide">
-                <input type="text" required v-model="name" />
+                <input type="text" required v-model="trabajador.name" />
                 <label>Nombre</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input">
-                <input type="text" required v-model="email" />
+                <input type="text" required v-model="trabajador.email" />
                 <label>Correo</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
-                <input type="password" required v-model="password" />
+                <input type="password" required v-model="trabajador.password" />
                 <label>Contraseña</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input">
-                <input type="integer" required v-model="rut" />
+                <input type="integer" required v-model="trabajador.rut" />
                 <label>Rut</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
-                <input type="date" required v-model="f_nac" />
+                <input type="date" required v-model="trabajador.f_nac" />
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input">
-                <input type="text" required v-model="cargo" />
+                <input type="text" required v-model="trabajador.cargo" />
                 <label>Cargo</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
-                <input type="text" required v-model="direccion" />
+                <input type="text" required v-model="trabajador.direccion" />
                 <label>Direccion</label>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="styled-input" style="float:right;">
-                <input type="text" required v-model="phone" />
+                <input type="text" required v-model="trabajador.phone" />
                 <label>Teléfono</label>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default {
   name: 'CrearTrabajadorPanel',
   data() {
     return {
-      user: {
+      trabajador: {
         name: '',
         email: '',
         password: '',
@@ -113,28 +113,31 @@ export default {
   },
   methods: {
     IngresarTrabajador() {
-      if (
-        this.user.name &&
-        this.user.email &&
-        this.user.password &&
-        this.user.rut &&
-        this.user.f_nac &&
-        this.user.cargo &&
-        this.user.direccion &&
-        this.user.phone
+      if (this.trabajador.cargo == 'Directora') {
+        alert('Cargo No puede ser directora');
+      }
+      else if (
+        this.trabajador.name &&
+        this.trabajador.email &&
+        this.trabajador.password &&
+        this.trabajador.rut &&
+        this.trabajador.f_nac &&
+        this.trabajador.cargo &&
+        this.trabajador.direccion &&
+        this.trabajador.phone
       ) {
-        let result = axios.post('http://127.0.0.1:8000/api/register', {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          rut: this.rut,
-          f_nac: this.f_nac,
-          cargo: this.cargo,
-          mod_ficha: false,
-          direccion: this.direccion,
-          phone: this.phone
-        });
-        console.log(result);
+        axios.post('http://127.0.0.1:8000/api/register', this.trabajador)
+          .then(data => {
+            console.log(data);
+          })
+          .catch((error) => {
+
+            console.log(error.response);
+
+          });
+
+        //let result = axios.post('http://127.0.0.1:8000/api/register', this.trabajador);
+        //console.log(result);
         this.$router.push('/AdminPanel')
       }
 
@@ -147,4 +150,5 @@ export default {
 </script>
 
 <style>
-@import '../assets/css/ingresinino.css';</style>
+@import '../assets/css/ingresinino.css';
+</style>

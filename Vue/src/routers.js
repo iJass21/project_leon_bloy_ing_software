@@ -16,6 +16,7 @@ import TrabajadorPanel from './components/Trabajador.vue';
 import{createRouter, createWebHistory} from 'vue-router';
 
 import editarNino from './components/editarNino.vue';
+import CrearFicha from './components/crearFIcha.vue';
 
 
 const routes = [
@@ -96,6 +97,12 @@ const routes = [
         name: 'editarNino',
         component: editarNino
     },
+    {
+        path: '/CrearFicha/:rut', // La ruta acepta un parámetro llamado "id"
+        name: 'CrearFicha',
+        component: CrearFicha
+    },
+
 
 ];
 
